@@ -1,0 +1,17 @@
+{
+	"description": "The Skeleton application",
+	"name": "bbalet/skeleton",
+	"type": "project",
+	"homepage": "https://codeigniter.com",
+	"license": "AGPLv3",
+	"require": {
+		"php": ">=5.3.7",
+		"sabre/xml": "^1.5",
+		"sabre/vobject": "^3.4",
+		"phpoffice/phpspreadsheet": "dev-develop",
+		"paragonie/random_compat": "^2.0",
+		"guzzlehttp/guzzle": "^6.3",
+		"dompdf/dompdf": "^0.8.2",
+		"picqer/php-barcode-generator": "^0.2.2"
+	}
+}
