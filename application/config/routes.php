@@ -67,6 +67,8 @@ $route['users'] = 'users';
 //Examples
 $route['examples/index'] = 'examples/index';
 $route['examples/views/(:any)'] = 'examples/renderView/$1';
+$route['examples/i18n/(:any)'] = 'examples/i18n/$1';
+$route['examples/i18n'] = 'examples/i18n';
 $route['examples/backend/typeahead/files/(:any)'] = 'examples/listFiles/$1';
 $route['examples/backend/pdf/file/display'] = 'examples/generatePDF';
 $route['examples/backend/pdf/file/download'] = 'examples/downloadPDF';

@@ -14,9 +14,15 @@
 			<?php if ($key == $selectedPill) { ?>
 				<a class="nav-link active" href="#"><?php echo $pill['title']; ?></a>
 			<?php } else { ?>
+				<?php if ($key == 'i18n') { ?>
+					<a href="<?php echo base_url() . 'examples/i18n';?>">
+						<?php echo $pill['title']; ?>
+					</a>
+					<?php } else { ?>
 				<a href="<?php echo base_url() . 'examples/views/' . $pill['url'];?>">
 					<?php echo $pill['title']; ?>
 				</a>
+				<?php } ?>
 			<?php } ?>
 			</li>
 		<?php	} ?>

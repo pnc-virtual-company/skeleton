@@ -66,6 +66,10 @@ class Examples extends CI_Controller {
 			'title' => 'Create a PDF file in PHP',
 			'url' => 'pdf',
 		],
+		'i18n' => [
+			'title' => 'Translation',
+			'url' => 'i18n',
+		],
 	];
 
 	/**
@@ -99,6 +103,21 @@ class Examples extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	//Example of translated view
+	function i18n($language = 'english') {
+		$this->load->helper('language');
+		$this->lang->load('global', $language);
+		$this->data['language'] = $language;
+		$this->data['selectedPill'] = 'i18n';
+		$this->data['title'] = $this->pills['i18n']['title'];
+		//Call extra function or sub view with call_user_func
+		$this->data['partialView'] = $this->load->view('examples/i18n', $this->data, true);
+		$this->load->view('templates/header');
+		$this->load->view('menu/index');
+		$this->load->view('examples/_master_view', $this->data);
+		$this->load->view('templates/footer');
+	}
+
 	//Backend for the autocomplete field
 	function listFiles($pattern) {
 		$pattern = '*' . $pattern . '*';
@@ -109,6 +128,7 @@ class Examples extends CI_Controller {
 		        ->set_output(json_encode($files));
 	}
 
+	//Recursive function that lists files
 	private function getDirContents($dir, $pattern, &$results = array()){
 	    $files = scandir($dir);
 
