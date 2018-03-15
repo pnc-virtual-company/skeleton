@@ -10,10 +10,6 @@ class Examples extends CI_Controller {
 			'title' => 'Material Icons',
 			'url' => 'icons',
 		],
-		'bootbox' => [
-			'title' => 'Bootstrap modals',
-			'url' => 'bootbox',
-		],
 		'dates' => [
 			'title' => 'Manipulate dates in JS',
 			'url' => 'dates',
@@ -38,6 +34,10 @@ class Examples extends CI_Controller {
 			'title' => 'Enhanced SELECT',
 			'url' => 'select2',
 		],
+		'bootbox' => [
+			'title' => 'Bootstrap modals',
+			'url' => 'bootbox',
+		],
 		'autocomplete' => [
 			'title' => 'autocomplete field',
 			'url' => 'autocomplete',
@@ -49,6 +49,10 @@ class Examples extends CI_Controller {
 		'treeview' => [
 			'title' => 'Treeview widget',
 			'url' => 'treeview',
+		],
+		'noto' => [
+			'title' => 'Google noto font',
+			'url' => 'noto',
 		],
 		'api' => [
 			'title' => 'Call a REST API in PHP',
