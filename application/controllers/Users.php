@@ -22,10 +22,14 @@ class Users extends CI_Controller {
     public function __construct() {
         parent::__construct();
         log_message('debug', 'URI=' . $this->uri->uri_string());
+        $this->session->set_userdata('last_page', $this->uri->uri_string());
         if($this->session->loggedIn === TRUE) {
-           // session related work;
            // Allowed methods
-
+           if ($this->session->isAdmin || $this->session->isSuperAdmin) {
+             //User management is reserved to admins and super admins
+           } else {
+             redirect('errors/privileges');
+           }
          } else {
            redirect('connection/login');
          }
@@ -146,62 +150,51 @@ class Users extends CI_Controller {
         //Test if user exists
         $data['users_item'] = $this->users_model->getUsers($id);
         if (empty($data['users_item'])) {
-            log_message('debug', '{controllers/users/reset} user not found');
-            redirect('notfound');
+          log_message('debug', '{controllers/users/reset} user not found');
+          redirect('notfound');
         } else {
-            $data = getUserContext($this);
-            $data['target_user_id'] = $id;
-            $this->load->helper('form');
-            $this->load->library('form_validation');
-            $this->form_validation->set_rules('CipheredValue', 'Password', 'required');
-            if ($this->form_validation->run() === FALSE) {
-                $data['public_key'] = file_get_contents('./assets/keys/public.pem', TRUE);
-                $this->load->view('users/reset', $data);
-            } else {
-                $this->users_model->resetPassword($id, $this->input->post('CipheredValue'));
+          log_message('debug', 'Reset the password of user #' . $id);
+          $this->users_model->resetPassword($id, $this->input->post('password'));
 
-                //Send an e-mail to the user so as to inform that its password has been changed
-                $user = $this->users_model->getUsers($id);
-                $this->load->library('email');
-                $this->load->library('polyglot');
-                $usr_lang = $this->polyglot->code2language($user['language']);
-                //We need to instance an different object as the languages of connected user may differ from the UI lang
-                $lang_mail = new CI_Lang();
-                $lang_mail->load('email', $usr_lang);
+          //Send an e-mail to the user so as to inform that its password has been changed
+          $user = $this->users_model->getUsers($id);
+          $this->load->library('email');
+          $this->load->library('parser');
+          $data = array(
+              'Title' => 'Your password was reset',
+              'Firstname' => $user['firstname'],
+              'Lastname' => $user['lastname']
+          );
+          $message = $this->parser->parse('emails/password_reset', $data, TRUE);
 
-                $this->load->library('parser');
-                $data = array(
-                    'Title' => $lang_mail->line('email_password_reset_title'),
-                    'Firstname' => $user['firstname'],
-                    'Lastname' => $user['lastname']
-                );
-                $message = $this->parser->parse('emails/' . $user['language'] . '/password_reset', $data, TRUE);
-                $this->email->set_encoding('quoted-printable');
+          if ($this->config->item('from_mail') != FALSE && $this->config->item('from_name') != FALSE ) {
+              $this->email->from($this->config->item('from_mail'), $this->config->item('from_name'));
+          } else {
+              $this->email->from('do.not@reply.me', 'LMS');
+          }
+          $this->email->to($user['email']);
+          $subject = $this->config->item('subject_prefix');
+          $this->email->subject($subject . 'Your password was reset');
+          $this->email->message($message);
+          log_message('debug', 'Sending the reset email');
+          if ($this->config->item('log_threshold') > 1) {
+            $this->email->send(FALSE);
+            $debug = $this->email->print_debugger(array('headers'));
+            log_message('debug', 'print_debugger = ' . $debug);
+          } else {
+            $this->email->send();
+          }
 
-                if ($this->config->item('from_mail') != FALSE && $this->config->item('from_name') != FALSE ) {
-                    $this->email->from($this->config->item('from_mail'), $this->config->item('from_name'));
-                } else {
-                    $this->email->from('do.not@reply.me', 'LMS');
-                }
-                $this->email->to($user['email']);
-                if ($this->config->item('subject_prefix') != FALSE) {
-                    $subject = $this->config->item('subject_prefix');
-                } else {
-                   $subject = '[Jorani] ';
-                }
-                $this->email->subject($subject . $lang_mail->line('email_password_reset_subject'));
-                $this->email->message($message);
-                $this->email->send();
-
-                //Inform back the user by flash message
-                $this->session->set_flashdata('msg', lang('users_reset_flash_msg_success'));
-                if ($this->is_hr) {
-                    redirect('users');
-                }
-                else {
-                    redirect('home');
-                }
-            }
+          //Inform back the user by flash message
+          $this->session->set_flashdata('msg', 'The password was successfully reset');
+          if ($this->session->isAdmin || $this->session->isSuperAdmin) {
+            log_message('debug', 'Redirect to list of users page');
+            redirect('users');
+          }
+          else {
+            log_message('debug', 'Redirect to homepage');
+            redirect('home');
+          }
         }
     }
 
@@ -255,7 +248,14 @@ class Users extends CI_Controller {
             }
             $this->email->subject($subject . 'Your account is created');
             $this->email->message($message);
-            $this->email->send();
+            log_message('debug', 'Sending the user creation email');
+            if ($this->config->item('log_threshold') > 1) {
+              $this->email->send(FALSE);
+              $debug = $this->email->print_debugger(array('headers'));
+              log_message('debug', 'print_debugger = ' . $debug);
+            } else {
+              $this->email->send();
+            }
 
             $this->session->set_flashdata('msg', 'The user was successfully created');
             redirect('users');

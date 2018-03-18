@@ -6,6 +6,10 @@ class Examples extends CI_Controller {
 	 * @var object Definition of navigation options
 	 */
 	protected $pills = [
+		'matrix' => [
+			'title' => 'List of examples',
+			'url' => 'matrix',
+		],
 		'icons' => [
 			'title' => 'Material Icons',
 			'url' => 'icons',
@@ -81,6 +85,8 @@ class Examples extends CI_Controller {
 	function __construct()
 	{
 			parent::__construct();
+			log_message('debug', 'URI=' . $this->uri->uri_string());
+			$this->session->set_userdata('last_page', $this->uri->uri_string());
 			$this->data['pills'] = $this->pills;
 			$this->data['activeLink'] = 'examples';
 	}

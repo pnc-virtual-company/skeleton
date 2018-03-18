@@ -74,17 +74,11 @@ $route['examples/backend/pdf/file/display'] = 'examples/generatePDF';
 $route['examples/backend/pdf/file/download'] = 'examples/downloadPDF';
 $route['examples/backend/rest/time/server'] = 'examples/getServerTimeByApi';
 
-//Rest API
-$route['api/rest/users']['OPTIONS'] = 'rest/options';
-$route['api/rest/users']['GET'] = 'rest/users';
-$route['api/rest/users/(:num)']['GET'] = 'rest/users/$1';
-$route['api/rest/users']['POST'] = 'rest/users';
-$route['api/rest/users/(:num)']['PUT'] = 'rest/users/$1';
-$route['api/rest/users/(:num)']['DELETE'] = 'rest/users/$1';
+//Errors
+$route['errors/privileges'] = 'errors/privileges';
+$route['errors/notfound'] = 'errors/notfound';
 
-//User properties : is admin, id
-$route['api/rest/users/self']['GET'] = 'rest/getPropertiesOfConnectedUser';
-
+//System
 $route['default_controller'] = 'welcome';
-$route['404_override'] = '';
+$route['404_override'] = 'errors/notfound';
 $route['translate_uri_dashes'] = FALSE;

@@ -4,7 +4,7 @@
 <?php echo $flashPartialView;?>
 
   <?php
-  $attributes = array('id' => 'target', 'class' => 'form-signin');
+  $attributes = array('id' => 'formLogin', 'class' => 'form-signin');
   echo form_open('connection/login', $attributes); ?>
     <h2 class="form-signin-heading">Please sign in</h2>
     <label for="login" class="sr-only">Login</label>
@@ -16,3 +16,13 @@
   </form>
 
 </div> <!-- /container -->
+
+<script>
+    $(function(){
+      $('.form-control').keypress(function(event) {
+          if (event.keyCode == 13 || event.which == 13) {
+              $('#formLogin').submit();
+          }
+      });
+    });
+</script>

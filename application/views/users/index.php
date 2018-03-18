@@ -145,7 +145,7 @@ $(document).ready(function() {
 		$("#users tbody").on('click', '.reset-password',  function(){
         var id = $(this).parent().data('id');
 				var link = "<?php echo base_url();?>users/reset/" + id;
-				$("#formResetPwd").prop("target", link);
+				$("#formResetPwd").prop("action", link);
         $('#frmResetPwd').modal('show');
     });
 

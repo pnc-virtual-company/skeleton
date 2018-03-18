@@ -143,53 +143,6 @@ class Users_model extends CI_Model {
     }
 
     /**
-     * Create a user record in the database. the difference with set_users function is that it doesn't rely
-     * on values posted by en HTML form. Can be used by a mass importer for example.
-     * @param string $firstname User firstname
-     * @param string $lastname User lastname
-     * @param string $login User login
-     * @param string $email User e-mail
-     * @param string $password User password
-     * @param int $role role mask (2 for user or 8 for manager)
-     * @param bool $active Is user active or NULL
-     * @return int Inserted User Identifier
-     * @author Benjamin BALET <benjamin.balet@gmail.com>
-     */
-    public function insertUserByApi($firstname, $lastname, $login, $email, $password, $role, $active = NULL) {
-        //Hash the clear password using bcrypt (8 iterations)
-        $salt = '$2a$08$' . substr(strtr(base64_encode($this->getRandomBytes(16)), '+', '.'), 0, 22) . '$';
-        $hash = crypt($password, $salt);
-        $this->db->set('firstname', $firstname);
-        $this->db->set('lastname', $lastname);
-        $this->db->set('login', $login);
-        $this->db->set('email', $email);
-        $this->db->set('password', $hash);
-        $this->db->set('role', $role);
-        if (isset($active)) $this->db->set('active', $active);
-        $this->db->insert('users');
-        return $this->db->insert_id();
-    }
-
-    /**
-     * Update a user record in the database. the difference with update_users function is that it doesn't rely
-     * on values posted by en HTML form. Can be used by a mass importer for example.
-     * @param int $id Id of the user
-     * @param array $data Associative array of fields to be updated
-     * @return int Number of affected rows
-     * @author Benjamin BALET <benjamin.balet@gmail.com>
-     */
-    public function updateUserByApi($id, $data) {
-        if (isset($password)){
-            //Hash the clear password using bcrypt (8 iterations)
-            $salt = '$2a$08$' . substr(strtr(base64_encode($this->getRandomBytes(16)), '+', '.'), 0, 22) . '$';
-            $hash = crypt($password, $salt);
-            $this->db->set('password', $hash);
-        }
-        $this->db->where('id', $id);
-        return $this->db->update('users', $data);
-    }
-
-    /**
      * Update a given user in the database. Update data are coming from an HTML form
      * @return int number of affected rows
      * @author Benjamin BALET <benjamin.balet@gmail.com>
@@ -214,12 +167,13 @@ class Users_model extends CI_Model {
 
     /**
      * Update a given user in the database. Update data are coming from an HTML form
+     * @param int $id Identifier of the user
+     * @param string $password password in clear
      * @return int number of affected rows
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
-    public function resetPassword($id, $CipheredNewPassword) {
+    public function resetPassword($id, $password) {
         //Hash the clear password using bcrypt (8 iterations)
-        $password = $this->input->post('password');
         $salt = '$2a$08$' . substr(strtr(base64_encode($this->getRandomBytes(16)), '+', '.'), 0, 22) . '$';
         $hash = crypt($password, $salt);
         $data = array(
@@ -227,27 +181,6 @@ class Users_model extends CI_Model {
         );
         $this->db->where('id', $id);
         return $this->db->update('users', $data);
-    }
-
-    /**
-     * Reset a password. Generate a new password and store its hash into db.
-     * @param int $id User identifier
-     * @return string clear password
-     * @author Benjamin BALET <benjamin.balet@gmail.com>
-     */
-    public function resetClearPassword($id) {
-        //generate a random password of length 10
-        $password = $this->randomPassword(10);
-        //Hash the clear password using bcrypt (8 iterations)
-        $salt = '$2a$08$' . substr(strtr(base64_encode($this->getRandomBytes(16)), '+', '.'), 0, 22) . '$';
-        $hash = crypt($password, $salt);
-        //Store the new password into db
-        $data = array(
-            'password' => $hash
-        );
-        $this->db->where('id', $id);
-        $this->db->update('users', $data);
-        return $password;
     }
 
     /**
@@ -267,22 +200,19 @@ class Users_model extends CI_Model {
      * @param array $row database record of a user
      */
     private function loadProfile($row) {
+      /*
+        00000001 1  Admin
+        00000100 8  HR Officier / Local HR Manager
+        00001000 16 HR Manager
+        = 00001101 25 Can access to HR functions
+       */
+        $isAdmin = FALSE;
         if (((int) $row->role & 1)) {
-            $is_admin = TRUE;
-        } else {
-            $is_admin = FALSE;
+            $isAdmin = TRUE;
         }
-
-        /*
-          00000001 1  Admin
-          00000100 8  HR Officier / Local HR Manager
-          00001000 16 HR Manager
-          = 00001101 25 Can access to HR functions
-         */
+        $isSuperAdmin = FALSE;
         if (((int) $row->role & 25)) {
-            $is_hr = TRUE;
-        } else {
-            $is_hr = FALSE;
+            $isSuperAdmin = TRUE;
         }
 
         $newdata = array(
@@ -291,9 +221,8 @@ class Users_model extends CI_Model {
             'firstname' => $row->firstname,
             'lastname' => $row->lastname,
             'fullname' => $row->firstname . ' ' . $row->lastname,
-            'isAdmin' => $is_admin,
-            'isHr' => $is_hr,
-            'manager' => $row->manager,
+            'isAdmin' => $isAdmin,
+            'isSuperAdmin' => $isSuperAdmin,
             'loggedIn' => TRUE
         );
         $this->session->set_userdata($newdata);

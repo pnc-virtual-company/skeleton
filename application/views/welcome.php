@@ -7,7 +7,6 @@
 		<ul>
 			<li><a href="<?php echo base_url();?>connection/login">Login page</a>.</li>
 			<li><a href="<?php echo base_url();?>users/index">List of users (you need to be logged in)</a>.</li>
-			<li>An example of <a href="<?php echo base_url();?>users/index">user selection</a>.</li>
 		</ul>
 		<p>The Skeleton application contains a lot of <a href="<?php echo base_url();?>examples/views/index">examples for JS</a>:</p>
 		<ul>
