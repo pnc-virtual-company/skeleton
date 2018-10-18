@@ -88,28 +88,28 @@ class UserTableSeeder extends Seeder
         $manager = new User();
         $manager->name = 'Benjamin BALET';
         $manager->email = 'manager@example.com';
-        $employee->password = bcrypt('manager');
+        $manager->password = bcrypt('manager');
         $manager->save();
         $manager->roles()->attach($roleManager);
 
         $manager = new User();
         $manager->name = 'Channak CHHON';
         $manager->email = 'channak@example.com';
-        $employee->password = bcrypt('manager');
+        $manager->password = bcrypt('manager');
         $manager->save();
         $manager->roles()->attach($roleManager);
 
         $manager = new User();
         $manager->name = 'Rady Y';
         $manager->email = 'rady@example.com';
-        $employee->password = bcrypt('manager');
+        $manager->password = bcrypt('manager');
         $manager->save();
         $manager->roles()->attach($roleManager);
 
         $manager = new User();
         $manager->name = 'Rith NHEL';
         $manager->email = 'rith@example.com';
-        $employee->password = bcrypt('manager');
+        $manager->password = bcrypt('manager');
         $manager->save();
         $manager->roles()->attach($roleManager);
     }

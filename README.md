@@ -14,6 +14,7 @@ Setup
 
 Launch the migration of the database and populate it with some random data:
 
+    php artisan migrate:fresh --seed
 
 The application is deployed and accessible from the public subfolder.
 
