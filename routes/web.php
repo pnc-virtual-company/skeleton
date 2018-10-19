@@ -17,4 +17,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index')->name('home');
+Route::get('users', 'UserController@index')->name('users');
+Route::get('users/profile', 'UserController@profile')->name('profile');
+Route::get('users/export','UserController@export');
+
+/*=============================================================================
+   The routes below are written for the examples only. 
+   You can delete them because you do not need them for a real application.
+*/
+
+Route::get('examples', 'ExamplesController@index')->name('examples');
+
+/*
+=============================================================================*/

@@ -6,15 +6,13 @@
 
         <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-
         <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
         <style>
             html, body {
                 background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
+                color: black;
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
@@ -40,22 +38,8 @@
                 top: 18px;
             }
 
-            .content {
-                text-align: center;
-            }
-
             .title {
                 font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
             }
 
             .m-b-md {
@@ -71,27 +55,38 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
                     @endauth
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    <span class="align-middle"><img src="{{ URL::to('/images/icon.svg') }}"> Skeleton</span>
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                <p>The Skeleton application already contains everything for user and session management:</p>
+                <ul>
+                    <li><a href="{{ route('login') }}">Login page</a>.</li>
+                    <li><a href="{{ route('users') }}">List of users (you need to be logged in)</a>.</li>
+                </ul>
+                <p>The Skeleton application contains a lot of <a href="{{ route('examples') }}">examples for JS</a>:</p>
+                <ul>
+                    <li>A ton of icons</li>
+                    <li>A date picker</li>
+                    <li>A calendar</li>
+                    <li>Some charts</li>
+                    <li>A JS lib to manipulate dates</li>
+                    <li>An autocomplete field</li>
+                    <li>Two rich text editors</li>
+                    <li>A treeview widget</li>
+                </ul>
+                <p>The Skeleton application contains a lot of <a href="{{ route('examples') }}">examples for PHP</a>:</p>
+                <ul>
+                    <li>Create an Excel file (See <a href="{{ url('/users/index') }}">list of users</a> / export)</li>
+                    <li>Create a barcode</li>
+                    <li>Create a PDF file</li>
+                    <li>Create charts as an image</li>
+                </ul>
             </div>
         </div>
     </body>
