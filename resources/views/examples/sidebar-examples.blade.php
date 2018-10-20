@@ -116,3 +116,11 @@
 
 </div>
 </div>
+
+@push('scripts')
+<script>
+$(function() {
+    document.title = 'Skeleton / Example: {{ $currentExample }}';
+});
+</script>
+@endpush
