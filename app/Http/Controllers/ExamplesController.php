@@ -27,8 +27,6 @@ class ExamplesController extends Controller
     {
         return view('examples.index', ['currentExample' => 'List of examples']);
         /*
-Send/Test Emails
-Material Icons
 Manipulate dates in JS
 Date selector widget
 Bootstrap CSS
@@ -44,7 +42,6 @@ Create a barcode in PHP
 Create a PDF file in PHP
 Translation
 
-Route::get('examples/emails', 'ExamplesController@emails');
 Route::get('examples/icons', 'ExamplesController@icons');
 Route::get('examples/momentjs', 'ExamplesController@momentjs');
 Route::get('examples/datepicker', 'ExamplesController@datepicker');
@@ -57,7 +54,7 @@ Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
     }
 
     /**
-     * How to check if email was sent
+     * How to test emails / How tosend an email
      *
      * @return \Illuminate\Http\Response
      */
@@ -66,7 +63,15 @@ Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
         return view('examples.emails', ['currentExample' => 'Send/Test Emails']);
     }
 
-
+    /**
+     * How to use icons of the starter kit
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function icons()
+    {
+        return view('examples.icons', ['currentExample' => 'Material Icons']);
+    }
 
 
     /**
