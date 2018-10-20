@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <button class="btn btn-secondary" id="cmdAddUser">@lang('Add')</button>
-                            <a class="btn btn-secondary" href="{{URL::to('/')}}/users/export">@lang('Export to Excel')</a>
+                            <a class="btn btn-secondary" href="{{URL::to('users/export')}}">@lang('Export to Excel')</a>
                         </div>
                     </div>
 

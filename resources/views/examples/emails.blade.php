@@ -17,8 +17,24 @@
               <li>Send an email form the application.</li>
               <li>Double click on an email in the list of emails received by the fake SMTP server.</li>
             </ol>
-            
-            <p><img class="img-fluid" src="{{ URL::to('images/examples/fake-smtp-server.png') }}" /></p>
+
+            <p>Then you can use the button below that will send a fake email:</p>
+
+            <p>
+                <button class="btn btn-primary" id='cmdSendFakeEmail'>@lang('Send a fake Email')</button>
+                <label for="txtStatus">@lang('Status:')
+                    <input type="text" id="txtStatus">
+                </label>
+                <label for="txtMessage">@lang('Message:')
+                    <input type="text" id="txtMessage">
+                </label>
+            </p>
+
+            <h3>Preview of fake SMTPserver</h3>
+
+            <p>
+                <img class="img-fluid" src="{{ URL::to('images/examples/fake-smtp-server.png') }}" />
+            </p>
             
         </div>
 
@@ -26,13 +42,23 @@
 
     </div>
 </div>
+
+@include('modal-wait')
+
 @endsection
 
 @push('scripts')
 <script>
 $(function() {
   //Ajax call to endpoint that sends an email
-
+    $('#cmdSendFakeEmail').click(function (){
+        $('#frmModalWait').modal('show');
+        $.get("{{URL::to('examples/emails/sendFakeEmail')}}", function(data, status) {
+            $('#txtStatus').val(status);
+            $('#txtMessage').val(data);
+            $('#frmModalWait').modal('hide');
+        });
+    });
 });
 </script>
 @endpush

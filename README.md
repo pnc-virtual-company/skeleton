@@ -79,8 +79,10 @@ Connect to the application as an administrator (password is *manager* for all re
 You can clean the following files if you want to build your own application:
 
 * resources/views/examples/*
+* resources/views/emails/example.php
 * public/images/examples/*
 * app/Http/Controllers/ExamplesComtroller.php
+* app/Mail/ExampleEmail.php
 * And the routes associated to the examples into routes/web.php
 
 Follow a tutorial like this one: https://laravel-news.com/your-first-laravel-application

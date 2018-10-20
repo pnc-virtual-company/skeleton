@@ -44,6 +44,9 @@ Route::get('examples/rest', 'ExamplesController@rest');
 Route::get('examples/barcode', 'ExamplesController@barcode');
 Route::get('examples/pdf', 'ExamplesController@pdf');
 Route::get('examples/translation', 'ExamplesController@translation');
+
+Route::get('examples/emails/sendFakeEmail', 'ExamplesController@sendEmail');
+
 Route::get('examples', 'ExamplesController@index')->name('examples');
 /*
 =============================================================================*/

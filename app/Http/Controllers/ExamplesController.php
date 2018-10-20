@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ExampleEmail;
 
 class ExamplesController extends Controller
 {
@@ -135,5 +137,21 @@ Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
     public function translation()
     {
         return view('examples.translation', ['currentExample' => 'Translation']);
+    }
+
+
+
+    //================================================================================
+    // Service endpoints
+
+    /**
+     * Triggered by Ajax: send an example of email
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function sendEmail()
+    {
+        Mail::to('anonymous.user@example.org')->send(new ExampleEmail());
+        return response(__('Email sent'), 200)->header('Content-Type', 'text/plain');
     }
 }

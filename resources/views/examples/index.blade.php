@@ -32,7 +32,10 @@
                     <tr>
                       <td>Send an email</td>
                       <td>Laravel email library</td>
-                      <td><a href="{{ url('examples/emails') }}">Send an email</a> and test with a Fake SMTP server.</td>
+                      <td>
+                        <a href="{{ url('examples/emails') }}">Send an email</a> and test with a Fake SMTP server.
+                        Another example can be found when the user is created.
+                      </td>
                     </tr>
                     <tr>
                       <td>Translate the application</td>
