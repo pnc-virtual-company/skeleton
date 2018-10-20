@@ -27,7 +27,6 @@ class ExamplesController extends Controller
     {
         return view('examples.index', ['currentExample' => 'List of examples']);
         /*
-Manipulate dates in JS
 Date selector widget
 Bootstrap CSS
 Charts in JS
@@ -42,8 +41,6 @@ Create a barcode in PHP
 Create a PDF file in PHP
 Translation
 
-Route::get('examples/icons', 'ExamplesController@icons');
-Route::get('examples/momentjs', 'ExamplesController@momentjs');
 Route::get('examples/datepicker', 'ExamplesController@datepicker');
 Route::get('examples/bootstrap', 'ExamplesController@bootstrap');
 Route::get('examples/chartsjs', 'ExamplesController@chartsjs');
@@ -72,6 +69,22 @@ Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
     {
         return view('examples.icons', ['currentExample' => 'Material Icons']);
     }
+
+    /**
+     * How to manipulate dates in JS
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function momentjs()
+    {
+        return view('examples.dates', ['currentExample' => 'Manipulate dates in JS']);
+    }
+
+
+
+    
+
+
 
 
     /**

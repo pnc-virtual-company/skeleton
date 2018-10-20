@@ -7,6 +7,10 @@ require('chart.js');
 require('awesomplete');
 require('js-cookie');
 
+window.CodeMirror = require('codemirror');
+require('codemirror/mode/javascript/javascript');
+require('codemirror/addon/selection/active-line');
+
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This

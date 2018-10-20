@@ -21,6 +21,7 @@
         "bootstrap-datepicker": "^1.8.0",
         "chart.js": "^2.7.2",
         "chartjs-plugin-datalabels": "^0.3.0",
+        "codemirror": "^5.40.2",
         "cropperjs": "^1.4.1",
         "croppie": "^2.6.2",
         "datatables.net": "^1.10.19",
