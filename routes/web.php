@@ -36,7 +36,6 @@ Route::get('examples/bootstrap', 'ExamplesController@bootstrap');
 Route::get('examples/chartsjs', 'ExamplesController@chartsjs');
 Route::get('examples/fullCalendar', 'ExamplesController@fullCalendar');
 Route::get('examples/select2', 'ExamplesController@select2');
-Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
 Route::get('examples/richtexteditor', 'ExamplesController@richtexteditor');
 Route::get('examples/treeview', 'ExamplesController@treeview');
 Route::get('examples/noto', 'ExamplesController@noto');

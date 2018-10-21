@@ -1,6 +1,13 @@
+# CHANGELOG
 
-Add an alternative to BS datepicker with Flatpickr because it has more options:
-https://flatpickr.js.org/examples/
+## Version 2.0.0
 
-Remove the example with bootbox as the project looks dead.
+* Migration to Laravel 5.7
+* Frontend dependencies are now managed with npm, SaaS, and WebPack
+* Add an alternative to BS datepicker with Flatpickr: https://flatpickr.js.org/examples/
+* Remove the example with bootbox as the project looks dead
+* Remove the example with autocomplete as the project looks dead
 
+## Version 1.0.0
+
+Initial version for CodeIgniter 3.X

@@ -28,16 +28,6 @@ class ExamplesController extends Controller
     public function index()
     {
         return view('examples.index', ['currentExample' => 'List of examples']);
-        /*
-Bootstrap modals
-autocomplete field
-Rich text editor
-Google noto font
-Call a REST API in PHP
-Translation
-
-Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
-        */
     }
 
     /**
@@ -119,10 +109,6 @@ Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
     {
         return view('examples.select2', ['currentExample' => 'Enhanced SELECT']);
     }
-
-
-
-
 
     /**
      * Example of two rich text editors
@@ -234,7 +220,11 @@ Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
 
 	}
 
-	//Generate a PDF file that will be downloaded
+    /**
+     * Generate a PDF file that will be downloaded
+     * You might use this wrapper: https://github.com/barryvdh/laravel-dompdf
+     * @return void
+     */
 	function downloadPDF()
 	{
 		// instantiate and use the dompdf class
