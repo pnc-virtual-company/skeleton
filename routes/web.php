@@ -45,8 +45,12 @@ Route::get('examples/barcode', 'ExamplesController@barcode');
 Route::get('examples/pdf', 'ExamplesController@pdf');
 Route::get('examples/translation', 'ExamplesController@translation');
 
+//Service endpoints
 Route::get('examples/emails/sendFakeEmail', 'ExamplesController@sendEmail');
+Route::get('examples/pdf/generatePDF', 'ExamplesController@generatePDF');
+Route::get('examples/pdf/downloadPDF', 'ExamplesController@downloadPDF');
 
+//Landing page for the examples:
 Route::get('examples', 'ExamplesController@index')->name('examples');
 /*
 =============================================================================*/

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ExampleEmail;
+use Dompdf\Dompdf;
 
 class ExamplesController extends Controller
 {
@@ -32,8 +34,6 @@ autocomplete field
 Rich text editor
 Google noto font
 Call a REST API in PHP
-Create a barcode in PHP
-Create a PDF file in PHP
 Translation
 
 Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
@@ -194,8 +194,6 @@ Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
         return view('examples.translation', ['currentExample' => 'Translation']);
     }
 
-
-
     //================================================================================
     // Service endpoints
 
@@ -209,4 +207,50 @@ Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
         Mail::to('anonymous.user@example.org')->send(new ExampleEmail());
         return response(__('Email sent'), 200)->header('Content-Type', 'text/plain');
     }
+
+    /**
+     * Generate a PDF file that will be displayed in the page (inline)
+     * You might use this wrapper: https://github.com/barryvdh/laravel-dompdf
+     * @return void
+     */
+	function generatePDF()
+	{
+		// instantiate and use the dompdf class
+		$dompdf = new Dompdf();
+		$dompdf->loadHtml('hello world');
+		// (Optional) Setup the paper size and orientation
+		$dompdf->setPaper('A4', 'landscape');
+		// Render the HTML as PDF
+		$dompdf->render();
+        // Output the generated PDF to Browser
+        //This is the way with the lib, we must adapt it to Laravel:
+        //$dompdf->stream("dompdf_out.pdf", array("Attachment" => false));
+        $filename = "dompdf_out.pdf";
+        $output = $dompdf->output();
+        return new Response($output, 200, array(
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' =>  'inline; filename="' . $filename . '"',
+        ));
+
+	}
+
+	//Generate a PDF file that will be downloaded
+	function downloadPDF()
+	{
+		// instantiate and use the dompdf class
+		$dompdf = new Dompdf();
+		$dompdf->loadHtml('hello world');
+		// (Optional) Setup the paper size and orientation
+		$dompdf->setPaper('A4', 'landscape');
+		// Render the HTML as PDF
+		$dompdf->render();
+		// Output the generated PDF to Browser
+        //$dompdf->stream();  This is the way with the lib, we must adapt it to Laravel
+        $filename = "dompdf_out.pdf";
+        $output = $dompdf->output();
+        return new Response($output, 200, array(
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' =>  'attachment; filename="' . $filename . '"'
+        ));
+	}
 }
