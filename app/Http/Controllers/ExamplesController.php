@@ -27,7 +27,6 @@ class ExamplesController extends Controller
     {
         return view('examples.index', ['currentExample' => 'List of examples']);
         /*
-FullCalendar widget
 Enhanced SELECT
 Bootstrap modals
 autocomplete field
@@ -38,7 +37,6 @@ Create a barcode in PHP
 Create a PDF file in PHP
 Translation
 
-Route::get('examples/fullCalendar', 'ExamplesController@fullCalendar');
 Route::get('examples/select2', 'ExamplesController@select2');
 Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
         */
@@ -83,7 +81,7 @@ Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
     {
         return view('examples.datepicker', ['currentExample' => 'Date selector widget']);
     }
-
+    
     /**
      * Comprehensive example of Bootstrap capabilities
      *
@@ -103,6 +101,18 @@ Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
     {
         return view('examples.chartsjs', ['currentExample' => 'Charts in JS']);
     }
+
+    /**
+     * How to use a calendar widget
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function fullCalendar()
+    {
+        return view('examples.fullCalendar', ['currentExample' => 'FullCalendar widget']);
+    }
+
+
 
 
 
