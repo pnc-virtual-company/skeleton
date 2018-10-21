@@ -27,7 +27,6 @@ class ExamplesController extends Controller
     {
         return view('examples.index', ['currentExample' => 'List of examples']);
         /*
-Charts in JS
 FullCalendar widget
 Enhanced SELECT
 Bootstrap modals
@@ -39,7 +38,6 @@ Create a barcode in PHP
 Create a PDF file in PHP
 Translation
 
-Route::get('examples/chartsjs', 'ExamplesController@chartsjs');
 Route::get('examples/fullCalendar', 'ExamplesController@fullCalendar');
 Route::get('examples/select2', 'ExamplesController@select2');
 Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
@@ -96,7 +94,15 @@ Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
         return view('examples.bootstrap', ['currentExample' => 'Bootstrap CSS']);
     }
 
-
+    /**
+     * How to create fancy charts with Javascript
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function chartsjs()
+    {
+        return view('examples.chartsjs', ['currentExample' => 'Charts in JS']);
+    }
 
 
 
