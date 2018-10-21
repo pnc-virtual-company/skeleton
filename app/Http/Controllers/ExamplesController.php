@@ -27,7 +27,6 @@ class ExamplesController extends Controller
     {
         return view('examples.index', ['currentExample' => 'List of examples']);
         /*
-Date selector widget
 Bootstrap CSS
 Charts in JS
 FullCalendar widget
@@ -41,7 +40,6 @@ Create a barcode in PHP
 Create a PDF file in PHP
 Translation
 
-Route::get('examples/datepicker', 'ExamplesController@datepicker');
 Route::get('examples/bootstrap', 'ExamplesController@bootstrap');
 Route::get('examples/chartsjs', 'ExamplesController@chartsjs');
 Route::get('examples/fullCalendar', 'ExamplesController@fullCalendar');
@@ -81,8 +79,16 @@ Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
     }
 
 
+    /**
+     * Examples with two datepicker widgets
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function datepicker()
+    {
+        return view('examples.datepicker', ['currentExample' => 'Date selector widget']);
+    }
 
-    
 
 
 

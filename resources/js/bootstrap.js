@@ -6,42 +6,36 @@ require('tinymce');
 require('chart.js');
 require('awesomplete');
 require('js-cookie');
+const flatpickr = require("flatpickr");
 
 window.CodeMirror = require('codemirror');
 require('codemirror/mode/javascript/javascript');
 require('codemirror/addon/selection/active-line');
 
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
-
-//try {
-    window.$ = window.jQuery = require('jquery');
-    require('bootstrap');
-    require('croppie');
-    require('jstree');
-    require('fullcalendar');
-    require('fullcalendar/dist/locale-all.js');
-    require('datatables.net');
-    require('datatables.net-bs4');
-    //require('datatables.net-autofill');
-    //require('datatables.net-autofill-bs4');
-    require('datatables.net-buttons');
-    require('datatables.net-buttons-bs4');
-    require('datatables.net-buttons/js/buttons.colVis.js');
-    require('datatables.net-colreorder');
-    require('datatables.net-colreorder-bs4');
-    require('datatables.net-fixedcolumns');
-    require('datatables.net-fixedcolumns-bs4');
-    //require('datatables.net-fixedheader');
-    //require('datatables.net-keytable');
-    require('datatables.net-responsive');
-    require('datatables.net-responsive-bs4');
-    //require('datatables.net-rowgroup');
-    //require('datatables.net-scroller');
-    require('datatables.net-select');
+window.$ = window.jQuery = require('jquery');
+require('bootstrap');
+require('croppie');
+require('jstree');
+require('fullcalendar');
+require('fullcalendar/dist/locale-all.js');
+require('datatables.net');
+require('datatables.net-bs4');
+//require('datatables.net-autofill');
+//require('datatables.net-autofill-bs4');
+require('datatables.net-buttons');
+require('datatables.net-buttons-bs4');
+require('datatables.net-buttons/js/buttons.colVis.js');
+require('datatables.net-colreorder');
+require('datatables.net-colreorder-bs4');
+require('datatables.net-fixedcolumns');
+require('datatables.net-fixedcolumns-bs4');
+//require('datatables.net-fixedheader');
+//require('datatables.net-keytable');
+require('datatables.net-responsive');
+require('datatables.net-responsive-bs4');
+//require('datatables.net-rowgroup');
+//require('datatables.net-scroller');
+require('datatables.net-select');
 /*
 Extra dependencies for DataTable buttons plugin:
     require( 'datatables.net-buttons/js/buttons.colVis.js' )();
@@ -49,7 +43,8 @@ Extra dependencies for DataTable buttons plugin:
     require( 'datatables.net-buttons/js/buttons.flash.js' )();
     require( 'datatables.net-buttons/js/buttons.print.js' )();
 */
-//} catch (e) {}
+
+require('bootstrap-datepicker');
 
 $.ajaxSetup({
     headers: {
