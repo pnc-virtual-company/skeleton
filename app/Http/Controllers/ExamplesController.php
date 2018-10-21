@@ -27,7 +27,6 @@ class ExamplesController extends Controller
     {
         return view('examples.index', ['currentExample' => 'List of examples']);
         /*
-Bootstrap CSS
 Charts in JS
 FullCalendar widget
 Enhanced SELECT
@@ -40,7 +39,6 @@ Create a barcode in PHP
 Create a PDF file in PHP
 Translation
 
-Route::get('examples/bootstrap', 'ExamplesController@bootstrap');
 Route::get('examples/chartsjs', 'ExamplesController@chartsjs');
 Route::get('examples/fullCalendar', 'ExamplesController@fullCalendar');
 Route::get('examples/select2', 'ExamplesController@select2');
@@ -78,7 +76,6 @@ Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
         return view('examples.dates', ['currentExample' => 'Manipulate dates in JS']);
     }
 
-
     /**
      * Examples with two datepicker widgets
      *
@@ -88,6 +85,18 @@ Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
     {
         return view('examples.datepicker', ['currentExample' => 'Date selector widget']);
     }
+
+    /**
+     * Comprehensive example of Bootstrap capabilities
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function bootstrap()
+    {
+        return view('examples.bootstrap', ['currentExample' => 'Bootstrap CSS']);
+    }
+
+
 
 
 
