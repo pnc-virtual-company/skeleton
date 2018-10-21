@@ -27,7 +27,6 @@ class ExamplesController extends Controller
     {
         return view('examples.index', ['currentExample' => 'List of examples']);
         /*
-Enhanced SELECT
 Bootstrap modals
 autocomplete field
 Rich text editor
@@ -37,7 +36,6 @@ Create a barcode in PHP
 Create a PDF file in PHP
 Translation
 
-Route::get('examples/select2', 'ExamplesController@select2');
 Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
         */
     }
@@ -112,7 +110,15 @@ Route::get('examples/autocomplete', 'ExamplesController@autocomplete');
         return view('examples.fullCalendar', ['currentExample' => 'FullCalendar widget']);
     }
 
-
+    /**
+     * How to use a calendar widget
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function select2()
+    {
+        return view('examples.select2', ['currentExample' => 'Enhanced SELECT']);
+    }
 
 
 

@@ -44,7 +44,9 @@ Extra dependencies for DataTable buttons plugin:
     require( 'datatables.net-buttons/js/buttons.print.js' )();
 */
 
+//JQuery Plugins or libs using JQuery
 require('bootstrap-datepicker');
+require('select2');
 
 $.ajaxSetup({
     headers: {
