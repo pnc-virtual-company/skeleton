@@ -60,12 +60,6 @@
                     <div class="row"><div class="col-md-12">&nbsp;</div></div>
                     <div class="row justify-content-left">
                         <div class="col-md-12">
-                            <a href="{{ url('examples/autocomplete') }}"  class="status btn btn-{{ $currentExample === 'autocomplete field'?"primary":"secondary"}} btn-block">@lang('autocomplete field')</a>
-                        </div>
-                    </div>
-                    <div class="row"><div class="col-md-12">&nbsp;</div></div>
-                    <div class="row justify-content-left">
-                        <div class="col-md-12">
                             <a href="{{ url('examples/richtexteditor') }}"  class="status btn btn-{{ $currentExample === 'Rich text editor'?"primary":"secondary"}} btn-block">@lang('Rich text editor')</a>
                         </div>
                     </div>
