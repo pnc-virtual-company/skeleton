@@ -1,16 +1,18 @@
 
-window._ = require('lodash');
+//window._ = require('lodash');
 window.Popper = require('popper.js').default;
 window.moment = require('moment');
-require('tinymce');
 require('chart.js');
-require('awesomplete');
 require('js-cookie');
 const flatpickr = require("flatpickr");
 
+//CodeMirror and supported languages, plugins
 window.CodeMirror = require('codemirror');
 require('codemirror/mode/javascript/javascript');
 require('codemirror/addon/selection/active-line');
+
+//TinyMCE Editor and plugins
+require('tinymce');
 
 window.$ = window.jQuery = require('jquery');
 require('bootstrap');
@@ -48,6 +50,8 @@ Extra dependencies for DataTable buttons plugin:
 require('bootstrap-datepicker');
 require('select2');
 
+//The CSRF token is defined in the HTML header
+//Configure JQuery to use it for all Ajax queries
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')

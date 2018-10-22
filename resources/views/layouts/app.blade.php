@@ -16,6 +16,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Fonts and Icons -->
+    <link rel="stylesheet" href="{{ asset('css/materialdesignicons.min.css') }}" />
 </head>
 <body>
     <div id="app">

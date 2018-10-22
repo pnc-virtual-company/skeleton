@@ -112,6 +112,8 @@ class ExamplesController extends Controller
 
     /**
      * Example of two rich text editors
+     * For image upload, see: 
+     * https://medium.com/@bvipul/integrate-tinymce-editor-in-your-laravel-installation-with-a-filemanager-235894910531
      *
      * @return \Illuminate\Http\Response
      */
