@@ -46,6 +46,7 @@ Route::get('examples/translation', 'ExamplesController@translation');
 
 //Service endpoints
 Route::get('examples/emails/sendFakeEmail', 'ExamplesController@sendEmail');
+Route::get('examples/rest/getServerTime', 'ExamplesController@getServerTime');
 Route::get('examples/pdf/generatePDF', 'ExamplesController@generatePDF');
 Route::get('examples/pdf/downloadPDF', 'ExamplesController@downloadPDF');
 

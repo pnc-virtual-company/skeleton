@@ -7,6 +7,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ExampleEmail;
 use Dompdf\Dompdf;
+use GuzzleHttp\Client;
+use function GuzzleHttp\json_encode;
 
 class ExamplesController extends Controller
 {
@@ -149,7 +151,21 @@ class ExamplesController extends Controller
      */
     public function rest()
     {
-        return view('examples.rest', ['currentExample' => 'Call a REST API in PHP']);
+        $client = new Client(); //Guzzle\Client
+        $res = $client->request('GET', url('examples/rest/getServerTime'));
+        
+        $statusCode = $res->getStatusCode();
+        // "200"
+        $contentType = $res->getHeader('content-type');
+        // 'application/json; charset=utf8'
+        $responseBody = $res->getBody();
+
+        return view('examples.rest', [
+            'currentExample' => 'Call a REST API in PHP',
+            'statusCode' => $statusCode,
+            'contentType' => json_encode($contentType),
+            'responseBody' => $responseBody,
+            ]);
     }
 
     /**
@@ -194,6 +210,16 @@ class ExamplesController extends Controller
     {
         Mail::to('anonymous.user@example.org')->send(new ExampleEmail());
         return response(__('Email sent'), 200)->header('Content-Type', 'text/plain');
+    }
+
+    /**
+     * Return the current date and time (PHP API called via Guzzle)
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getServerTime()
+    {
+        return response(date('Y-m-d H:i:s'), 200)->header('Content-Type', 'text/plain');
     }
 
     /**
