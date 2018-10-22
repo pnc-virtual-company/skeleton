@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
+    "name": "pnc-virtual-company/skeleton",
+    "description": "Skeleton example application. Starter kit for students of Passerelles numériques in Cambodia",
     "keywords": ["framework", "laravel"],
-    "license": "MIT",
+    "license": "AGPLv3",
     "type": "project",
     "require": {
         "php": "^7.1.3",

@@ -9,6 +9,10 @@ use App\Mail\ExampleEmail;
 use Dompdf\Dompdf;
 use GuzzleHttp\Client;
 use function GuzzleHttp\json_encode;
+use Picqer\Barcode\BarcodeGeneratorHTML;
+use Picqer\Barcode\BarcodeGeneratorSVG;
+use Picqer\Barcode\BarcodeGeneratorPNG;
+use Picqer\Barcode\BarcodeGeneratorJPG;
 
 class ExamplesController extends Controller
 {
@@ -221,6 +225,64 @@ class ExamplesController extends Controller
     {
         return response(date('Y-m-d H:i:s'), 200)->header('Content-Type', 'text/plain');
     }
+
+    /**
+     * Generate a barcode 
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function generateBarcode(Request $request)
+    {
+        $generator = null;
+        $result = '';
+        $contentType = '';
+        $format = strtolower($request->input('format'));
+        $type = strtolower($request->input('type'));
+        $message = $request->input('message');
+
+        //Output can be an image or HTML string
+        switch ($format) {
+            case 'svg': 
+                $generator = new BarcodeGeneratorSVG();
+                $contentType = 'image/svg+xml';
+                break;
+            case 'png':
+                $generator = new BarcodeGeneratorPNG();
+                $contentType = 'image/png';
+                break;
+            case 'jpg':
+                $generator = new BarcodeGeneratorJPG();
+                $contentType = 'image/jpeg';
+                break;
+            case 'html':
+                $generator = new BarcodeGeneratorHTML();
+                $contentType = 'text/html';
+                break;
+            default:
+                $generator = new BarcodeGeneratorPNG();
+                $contentType = 'image/png';
+                break;
+        }
+
+        //Type of bar code
+        //The library supports more types, but it enough for demo
+        switch ($type) {
+            case 'code128': 
+                $result = $generator->getBarcode($message, $generator::TYPE_CODE_128);
+                break;
+            case 'ean13': 
+                $result = $generator->getBarcode($message, $generator::TYPE_EAN_13);
+                break;
+            default:
+                $result = $generator->getBarcode($message, $generator::TYPE_STANDARD_2_5);
+                break;
+        }
+        
+        //Return the answer
+        return response($result, 200)->header('Content-Type', $contentType);
+    }
+
 
     /**
      * Generate a PDF file that will be displayed in the page (inline)
