@@ -2,9 +2,13 @@
 
 The skeleton application is a starter kit for Laravel based projects developed during the Virtual Company II at PNC.
 
+## Features
+
+* Debug bar
+
 ## Prepare the database
 
-
+Create a database
 
 ## Setup
 

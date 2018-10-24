@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ExampleEmail;
 use Dompdf\Dompdf;
@@ -13,6 +15,8 @@ use Picqer\Barcode\BarcodeGeneratorHTML;
 use Picqer\Barcode\BarcodeGeneratorSVG;
 use Picqer\Barcode\BarcodeGeneratorPNG;
 use Picqer\Barcode\BarcodeGeneratorJPG;
+//If you want to use the debug bar
+use Barryvdh\Debugbar\Facade as Debugbar;
 
 class ExamplesController extends Controller
 {
@@ -194,12 +198,20 @@ class ExamplesController extends Controller
 
     /**
      * Example of translation
-     *
+     * See: https://laracasts.com/discuss/channels/general-discussion/where-to-setlocale-in-laravel-5-on-multilingual-multidomain-app
+     * 
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function translation()
+    public function translation(Request $request)
     {
-        return view('examples.translation', ['currentExample' => 'Translation']);
+        $locale = \App::getLocale();
+        Debugbar::info('Current locale: ' . $locale);
+        $langCode = $request->session()->get('langCode');;
+        return view('examples.translation', [
+            'currentExample' => 'Translation',
+            'langCode' => $langCode,
+        ]);
     }
 
     //================================================================================
@@ -212,6 +224,7 @@ class ExamplesController extends Controller
      */
     public function sendEmail()
     {
+        Debugbar::info('Send Email via Ajax call');
         Mail::to('anonymous.user@example.org')->send(new ExampleEmail());
         return response(__('Email sent'), 200)->header('Content-Type', 'text/plain');
     }
@@ -229,7 +242,7 @@ class ExamplesController extends Controller
     /**
      * Generate a barcode 
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function generateBarcode(Request $request)

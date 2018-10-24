@@ -44,6 +44,13 @@ Route::get('examples/barcode', 'ExamplesController@barcode');
 Route::get('examples/pdf', 'ExamplesController@pdf');
 Route::get('examples/translation', 'ExamplesController@translation');
 
+//Switch language code
+Route::get('examples/translation/switch/{langCode}', function ($langCode) {
+    App::setLocale($langCode);
+    Session::put('langCode', $langCode);
+    return Redirect::back();
+});
+
 //Service endpoints
 Route::get('examples/emails/sendFakeEmail', 'ExamplesController@sendEmail');
 Route::get('examples/rest/getServerTime', 'ExamplesController@getServerTime');

@@ -9,13 +9,13 @@ return [
     |
     */
     
-    'identifier' => 'identifier',
-    'firstname' => 'firstname',
-    'lastname' => 'lastname',
-    'datehired' => 'datehired',
-    'department' => 'department',
+    'identifier' => 'identifiant',
+    'firstname' => 'prénom',
+    'lastname' => 'nom',
+    'datehired' => 'date d\'embauche',
+    'department' => 'service',
     'position' => 'position',
-    'contract' => 'contract',
-    'Cancel' => 'Cancel',
-    'copied' => 'copied',
+    'contract' => 'contrat',
+    'Cancel' => 'Annuler',
+    'copied' => 'copié',
 ];
