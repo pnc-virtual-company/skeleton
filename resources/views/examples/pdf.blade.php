@@ -10,7 +10,7 @@
                 <a href="{{URL::to('examples/pdf/downloadPDF')}}">here</a>
             </p>
               
-            <iframe src="{{URL::to('examples/pdf/generatePDF')}}" width="700px" height=1200px"></iframe>
+            <iframe src="{{URL::to('examples/pdf/generatePDF')}}" width="700px" height=600px"></iframe>
             
         </div>
 

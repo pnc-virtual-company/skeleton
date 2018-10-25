@@ -95,9 +95,9 @@ class ExamplesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function chartsjs()
+    public function chartjs()
     {
-        return view('examples.chartsjs', ['currentExample' => 'Charts in JS']);
+        return view('examples.chartjs', ['currentExample' => 'Charts in JS']);
     }
 
     /**
@@ -247,6 +247,7 @@ class ExamplesController extends Controller
      */
     public function generateBarcode(Request $request)
     {
+        Debugbar::disable();
         $generator = null;
         $result = '';
         $contentType = '';
@@ -304,6 +305,7 @@ class ExamplesController extends Controller
      */
 	function generatePDF()
 	{
+        Debugbar::disable();
 		// instantiate and use the dompdf class
 		$dompdf = new Dompdf();
 		$dompdf->loadHtml('hello world');
@@ -320,7 +322,6 @@ class ExamplesController extends Controller
             'Content-Type' => 'application/pdf',
             'Content-Disposition' =>  'inline; filename="' . $filename . '"',
         ));
-
 	}
 
     /**

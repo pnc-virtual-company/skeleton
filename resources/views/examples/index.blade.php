@@ -61,9 +61,46 @@
                       </td>
                     </tr>
                     <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td>Random profile pictures</td>
+                      <td>Royalty free faces</td>
+                      <td>
+                        Take a look at the folder <code>public/images/examples/faces/</code>
+                        <img id="imgProfilePic" src="{{URL::to('images/examples/faces/m34.jpg')}}" class="img-fluid rounded mx-auto d-block"/>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td>Select a date or time</td>
+                        <td>Date picker</td>
+                        <td>You can find two examples of datepicker <a href="{{ url('examples/datepicker') }}">here</a></td>
+                    </tr>
+                    <tr>
+                        <td>Autocomplete widget</td>
+                        <td>Select2</td>
+                        <td><a href="{{ url('examples/select2') }}">Select2</a> enhance the SELECT tag by adding automatic filter.
+                          Then it would achieve a result similar to autocompletion.</td>
+                    </tr>
+                    <tr>
+                        <td>Text Editor</td>
+                        <td>TinyMCE</td>
+                        <td>
+                          <a href="{{ url('examples/richtexteditor') }}">TinyMCE</a> is a powerful text editor with penty of plugins.
+                          The demo only features the image and links plugins. So do not hesitate to read the documentation.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Treeview</td>
+                        <td>JsTree</td>
+                        <td><a href="{{ url('examples/treeview') }}">JsTree</a> allows you to present hierarchical data.</td>
+                    </tr>
+                    <tr>
+                        <td>Generate PDF</td>
+                        <td>dompdf</td>
+                        <td><a href="{{ url('examples/pdf') }}">dompdf</a> is a PHP library that helps you to generate PDF very easily.</td>
+                    </tr>
+                    <tr>
+                        <td>Generate Bar code</td>
+                        <td>php-barcode-generator</td>
+                        <td><a href="{{ url('examples/barcode') }}">This example</a> will demonstrate how to generate a bar code in PHP as HTML or image.</td>
                     </tr>
                   </tbody>
                 </table>
@@ -113,7 +150,16 @@
 		if (document.readyState === 'complete') {
 			LightTableFilter.init();
 		}
-	});
+  });
+  
+  //Generate a random URL to a fake profile picture 
+  var intervalID = setInterval(function() {
+    var items = Array('m','f');
+    var sex = items[Math.floor(Math.random()*items.length)];
+    var number = Math.floor(Math.random() * 43) + 1;
+    var picturePath = `{{URL::to('images/examples/faces')}}/${sex}${number}.jpg`;
+    $("#imgProfilePic").attr("src", picturePath);  
+  }, 500);
 
 })(document);
 </script>

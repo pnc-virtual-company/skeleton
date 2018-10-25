@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('home', 'HomeController@index')->name('home');
+Route::get('users/profile','UserController@profile');
 Route::get('users/export','UserController@export');
 Route::resource('users','UserController');
 
@@ -32,7 +33,7 @@ Route::get('examples/datepicker', 'ExamplesController@datepicker');
 Route::get('examples/flatpickr', 'ExamplesController@flatpickr');
 Route::get('examples/bootstrap', 'ExamplesController@bootstrap');
 Route::get('examples/bootstrap', 'ExamplesController@bootstrap');
-Route::get('examples/chartsjs', 'ExamplesController@chartsjs');
+Route::get('examples/chartjs', 'ExamplesController@chartjs');
 Route::get('examples/fullCalendar', 'ExamplesController@fullCalendar');
 Route::get('examples/select2', 'ExamplesController@select2');
 Route::get('examples/richtexteditor', 'ExamplesController@richtexteditor');

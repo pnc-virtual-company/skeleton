@@ -42,7 +42,7 @@
                     <div class="row"><div class="col-md-12">&nbsp;</div></div>
                     <div class="row justify-content-left">
                         <div class="col-md-12">
-                            <a href="{{ url('examples/chartsjs') }}"  class="status btn btn-{{ $currentExample === 'Charts in JS'?"primary":"secondary"}} btn-block">@lang('Charts in JS')</a>
+                            <a href="{{ url('examples/chartjs') }}"  class="status btn btn-{{ $currentExample === 'Charts in JS'?"primary":"secondary"}} btn-block">@lang('Charts in JS')</a>
                         </div>
                     </div>
                     <div class="row"><div class="col-md-12">&nbsp;</div></div>
