@@ -35,13 +35,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('examples') }}">{{ __('Examples') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users') }}"><i class="mdi mdi-lock"></i> {{ __('Users') }}</a>
+                            <a class="nav-link" href="{{URL::to('users')}}"><i class="mdi mdi-lock"></i> {{ __('Users') }}</a>
                         </li>
                     </ul>
 

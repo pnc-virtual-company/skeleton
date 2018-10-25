@@ -12,15 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('examples.index', ['currentExample' => 'List of examples']);
 });
 
 Auth::routes();
 
 Route::get('home', 'HomeController@index')->name('home');
-Route::get('users', 'UserController@index')->name('users');
-Route::get('users/profile', 'UserController@profile')->name('profile');
 Route::get('users/export','UserController@export');
+Route::resource('users','UserController');
 
 /*=============================================================================
    The routes below are written for the examples only. 
