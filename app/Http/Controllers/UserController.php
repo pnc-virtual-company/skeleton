@@ -147,14 +147,15 @@ class UserController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     * This method is called by Ajax
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
     {
         $request->user()->authorizeRoles(['Administrator']);
-
+        $user = User::find($id);
+        $user->delete();
     }
 
     /**

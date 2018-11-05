@@ -36,8 +36,8 @@
                                     @foreach ($users as $user)
                                     <tr data-id="{{ $user->id }}">
                                         <td>
-                                            <i class="fas fa-trash clickable delete-icon" data-id="{{ $user->id }}" title="@lang('delete the user')"></i>
-                                            <i class="fas fa-pen clickable edit-icon" data-id="{{ $user->id }}" title="@lang('edit the user')"></i>
+                                            <i class="mdi mdi-delete clickable delete-icon" data-id="{{ $user->id }}" title="@lang('delete the user')"></i>
+                                            <i class="mdi mdi-pencil clickable edit-icon" data-id="{{ $user->id }}" title="@lang('edit the user')"></i>
                                             <span>{{ $user->id }}</span>
                                         </td>
                                         <td>
@@ -65,6 +65,7 @@
 <!-- Include the modal //-->
 @include('modal-confirm-delete')
 @include('modal-alert')
+@include('modal-wait')
 
 @endsection
 
@@ -75,14 +76,11 @@ var table = null;
 //On document ready, 
 $(function() {
 
+    //Transform the table into a richer widget
     var table = $("#users").DataTable();
-
-/*    $("#cmdAddUser").click(function(e) {
-        $('#frmModalCreateUser').modal('show');
-    });*/
     
     //On click on delete, pass the object id to the confirmation modal
-    $('#keywords').on("click", ".delete-icon", function() {
+    $('#users').on("click", ".delete-icon", function() {
         $('#frmModalDeleteConfirmation').data("id", $(this).data("id"));
         $('#frmModalDeleteConfirmation').modal('show');
     });
@@ -94,6 +92,7 @@ $(function() {
 
     //Delete the row from the DataTable if button OK or press Enter
     $("#cmdDeleteConfirmation").click(function(e){
+        $('#frmModalWait').modal('show');
         var id = $('#frmModalDeleteConfirmation').data("id");
         $.ajax({
             url: '{{URL::to('/')}}/users/' + id,
@@ -105,10 +104,12 @@ $(function() {
             },
             success: function() {
                 table.rows('tr[data-id="' + id + '"]').remove().draw();
+                $('#frmModalWait').modal('hide');
                 $('#frmModalDeleteConfirmation').modal('hide');
             },
             error:
             function(result) {
+                $('#frmModalWait').modal('hide');
                 $('#frmModalDeleteConfirmation').modal('hide');                
                 $('#frmModalAlert').modal('show');
             },
