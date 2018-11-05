@@ -21,6 +21,7 @@ class UserTableSeeder extends Seeder
         $employee->password = bcrypt('password');
         $employee->save();
         $employee->roles()->attach($roleEmployee);
+        $employee->roles()->attach($roleManager);
 
         $employee = new User();
         $employee->name = 'Georges DUPONT';
@@ -65,7 +66,7 @@ class UserTableSeeder extends Seeder
         $employee->roles()->attach($roleEmployee);
 
         $employee = new User();
-        $employee->name = 'Bob DENARD';
+        $employee->name = 'Bob EPONGE';
         $employee->email = 'bob@example.com';
         $employee->password = bcrypt('password');
         $employee->save();

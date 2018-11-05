@@ -4,6 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
+
+            @include('session-flash')
+
             <div class="card">
                 <div class="card-header">@lang('List of users')</div>
 
@@ -11,7 +14,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <button class="btn btn-secondary" id="cmdAddUser">@lang('Add')</button>
+                            <a class="btn btn-secondary" href="{{URL::to('users/create')}}">@lang('Add a new user')</a>
                             <a class="btn btn-secondary" href="{{URL::to('users/export')}}">@lang('Export to Excel')</a>
                         </div>
                     </div>
@@ -26,6 +29,7 @@
                                         <th>@lang('ID')</th>
                                         <th>@lang('Name')</th>
                                         <th>@lang('Email')</th>
+                                        <th>@lang('Roles')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -34,13 +38,16 @@
                                         <td>
                                             <i class="fas fa-trash clickable delete-icon" data-id="{{ $user->id }}" title="@lang('delete the user')"></i>
                                             <i class="fas fa-pen clickable edit-icon" data-id="{{ $user->id }}" title="@lang('edit the user')"></i>
-                                            <span>{!! $user->id !!}</span>
+                                            <span>{{ $user->id }}</span>
                                         </td>
                                         <td>
                                             <span>{!! $user->name !!}</span>
                                         </td>
                                         <td>
                                             <span>{!! $user->email !!}</span>
+                                        </td>
+                                        <td>
+                                            <span>{{ $user->roles->pluck('name')->implode(', ') }}</span>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -58,7 +65,6 @@
 <!-- Include the modal //-->
 @include('modal-confirm-delete')
 @include('modal-alert')
-@include('users.modal-create')
 
 @endsection
 
@@ -71,41 +77,9 @@ $(function() {
 
     var table = $("#users").DataTable();
 
-    $("#cmdAddKeyword").click(function(e) {
-        $('#lblGenericInput').text('Keyword');
-        $('#lblGenericInputTitle').text('Add a new keyword');
-        $('#txtGenericInput').val('');
-        $("#cmdInputConfirmation").unbind( "click" );
-        $("#cmdInputConfirmation").click(function(e) {
-            var keyword = $('#txtGenericInput').val();
-            $.ajax({
-                url: '{{URL::to('/')}}/keywords',
-                type: 'POST',
-                data: {
-                    name: keyword,
-                    _method: 'POST',
-                    _token: $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(data) {
-                    var encodedStr = keyword.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
-                        return '&#'+i.charCodeAt(0)+';';
-                    });
-                    var cell='<i class="fas fa-trash clickable delete-icon" data-id="' + data.id + '" title="delete the keyword"></i>';
-                    cell+='&nbsp;<i class="fas fa-pen clickable edit-icon" data-id="' + data.id + '" title="edit the keyword"></i>';
-                    cell+='&nbsp;<span>' + encodedStr + '</span>';
-                    var row = table.row.add([cell]).draw();
-                    $(row).data("id", data.id);
-                    $('#frmModalInputField').modal('hide');
-                },
-                error:
-                function(result) {
-                    $('#frmModalInputField').modal('hide');                
-                    $('#frmModalAlert').modal('show');
-                },
-            });
-        });
-        $('#frmModalInputField').modal('show');
-    });
+/*    $("#cmdAddUser").click(function(e) {
+        $('#frmModalCreateUser').modal('show');
+    });*/
     
     //On click on delete, pass the object id to the confirmation modal
     $('#keywords').on("click", ".delete-icon", function() {
@@ -114,39 +88,8 @@ $(function() {
     });
     
     //On click on edit, fill the input modal
-    $('#keywords').on("click", ".edit-icon", function() {
-        var id = $(this).data("id");
-        var keyword = $(this).closest("tr").find("span").text();
-        $('#frmModalInputField').data("id", id);
-        $('#lblGenericInput').text('Keyword');
-        $('#lblGenericInputTitle').text('Edit a keyword');
-        $('#txtGenericInput').val(keyword);
-        $("#cmdInputConfirmation").unbind( "click" );
-        $("#cmdInputConfirmation").click(function(e){
-            e.preventDefault();
-            var id = $('#frmModalInputField').data("id");
-            var keyword = $('#txtGenericInput').val();
-            $.ajax({
-                url: '{{URL::to('/')}}/users/' + id,
-                type: 'PATCH',
-                data: {
-                    id: id,
-                    name: keyword,
-                    _method: 'PATCH',
-                    _token: $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function() {
-                    $('tr[data-id="' + id + '"]').closest("tr").find("span").text(keyword);
-                    $('#frmModalInputField').modal('hide');
-                },
-                error:
-                function(result) {
-                    $('#frmModalInputField').modal('hide');                
-                    $('#frmModalAlert').modal('show');
-                },
-            });
-        });
-        $('#frmModalInputField').modal('show');
+    $('#users').on("click", ".edit-icon", function() {
+        $('#frmModalEditUser').modal('show');
     });
 
     //Delete the row from the DataTable if button OK or press Enter
@@ -171,24 +114,6 @@ $(function() {
             },
         });
     });
-
-    //Handle enter key pressed
-    $(document).keypress(function(e) {
-        if ($("#frmModalDeleteConfirmation").is(':visible') && (e.keycode == 13 || e.which == 13)) {
-            e.preventDefault();
-            $("#cmdDeleteConfirmation").trigger("click");
-        }
-        if ($("#frmModalInputField").is(':visible') && (e.keycode == 13 || e.which == 13)) {
-            e.preventDefault();
-            $("#cmdInputConfirmation").trigger("click");
-        }
-    });
-
-    //Give the focus to the edit field of the update modal
-    $('#frmModalInputField').on('shown.bs.modal', function () {
-        $('#txtGenericInput').trigger('focus');
-    });
-
 });
 </script>
 @endpush

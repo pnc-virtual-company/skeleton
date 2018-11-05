@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
 use App\User;
+use App\Role;
 
 class UserController extends Controller
 {
@@ -44,8 +47,9 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $request->user()->authorizeRoles(['Administrator']);
-        $users = User::all();
-        return view('users.index', ['users' => $users]);
+        $users = User::with('roles')->get();
+        $roles = Role::all();
+        return view('users.index', ['users' => $users, 'roles' => $roles]);
     }
 
     /**
@@ -57,7 +61,8 @@ class UserController extends Controller
     public function create(Request $request)
     {
         $request->user()->authorizeRoles(['Administrator']);
-
+        $roles = Role::all();
+        return view('users.create', ['roles' => $roles]);
     }
 
     /**
@@ -70,7 +75,35 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->user()->authorizeRoles(['Administrator']);
+        // validate
+        // read more on validation at http://laravel.com/docs/validation
+        $rules = array(
+            'name'  => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'roles' => 'required'
+        );
+        $validator = Validator::make(Input::all(), $rules);
 
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::to('users/create')
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        } else {
+            // store
+            $user = new User;
+            $user->name     = Input::get('name');
+            $user->email    = Input::get('email');
+            $user->password = Input::get('password');
+            $user->save();
+            $user->roles()->attach(Input::get('roles'));
+            
+            // redirect
+            Session::flash('message.level', 'success');
+            Session::flash('message.content', __('The user was successfully created'));
+            return Redirect::to('users');
+        }
     }
 
     /**
