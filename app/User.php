@@ -28,6 +28,11 @@ class User extends Authenticatable
         'password', 'remember_token', 'created_at', 'updated_at',
     ];
 
+    /**
+     * Returns the list of roles of a user
+     *
+     * @return array
+     */
     public function roles()
     {
       return $this->belongsToMany(Role::class);

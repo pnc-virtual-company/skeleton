@@ -37,7 +37,8 @@
                                     <tr data-id="{{ $user->id }}">
                                         <td>
                                             <i class="mdi mdi-delete clickable delete-icon" data-id="{{ $user->id }}" title="@lang('delete the user')"></i>
-                                            <i class="mdi mdi-pencil clickable edit-icon" data-id="{{ $user->id }}" title="@lang('edit the user')"></i>
+                                            <a href="{{URL::to('users')}}/{{ $user->id }}/edit" title="@lang('edit')"><i class="mdi mdi-pencil clickable"></i></a>
+                                            <a href="{{URL::to('users')}}/{{ $user->id }}" title="@lang('view')"><i class="mdi mdi-eye clickable"></i></a>
                                             <span>{{ $user->id }}</span>
                                         </td>
                                         <td>
@@ -95,7 +96,7 @@ $(function() {
         $('#frmModalWait').modal('show');
         var id = $('#frmModalDeleteConfirmation').data("id");
         $.ajax({
-            url: '{{URL::to('/')}}/users/' + id,
+            url: '{{URL::to('users')}}/' + id,
             type: 'DELETE',
             data: {
                 id: id,

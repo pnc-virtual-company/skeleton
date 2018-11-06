@@ -48,8 +48,7 @@ class UserController extends Controller
     {
         $request->user()->authorizeRoles(['Administrator']);
         $users = User::with('roles')->get();
-        $roles = Role::all();
-        return view('users.index', ['users' => $users, 'roles' => $roles]);
+        return view('users.index', ['users' => $users]);
     }
 
     /**
@@ -116,7 +115,10 @@ class UserController extends Controller
     public function show(Request $request, $id)
     {
         $request->user()->authorizeRoles(['Administrator']);
-
+        $user = User::find($id);
+        $user->roleIds = $user->roles->pluck('id')->toArray();
+        $roles = Role::all();
+        return view('users.show', ['user' => $user, 'roles' => $roles]);
     }
 
     /**
@@ -129,7 +131,10 @@ class UserController extends Controller
     public function edit(Request $request, $id)
     {
         $request->user()->authorizeRoles(['Administrator']);
-
+        $user = User::find($id);
+        $user->roleIds = $user->roles->pluck('id')->toArray();
+        $roles = Role::all();
+        return view('users.edit', ['user' => $user, 'roles' => $roles]);
     }
 
     /**
