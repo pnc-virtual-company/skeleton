@@ -84,16 +84,16 @@ class UserController extends Controller
         );
         $validator = Validator::make(Input::all(), $rules);
 
-        // process the login
+        // process the validation of fields
         if ($validator->fails()) {
             return Redirect::to('users/create')
                 ->withErrors($validator)
                 ->withInput(Input::except('password'));
         } else {
-            // store
+            // store the new user and attach roles to it
             $user = new User;
-            $user->name     = Input::get('name');
-            $user->email    = Input::get('email');
+            $user->name = Input::get('name');
+            $user->email = Input::get('email');
             $user->password = Input::get('password');
             $user->save();
             $user->roles()->attach(Input::get('roles'));
@@ -147,7 +147,31 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->user()->authorizeRoles(['Administrator']);
+        // validate
+        $rules = array(
+            'name'  => 'required',
+            'email' => 'required|email',
+            'roles' => 'required'
+        );
+        $validator = Validator::make(Input::all(), $rules);
 
+        // process the validation of fields
+        if ($validator->fails()) {
+            return Redirect::to('users/' . $id .  '/edit')
+                ->withErrors($validator);
+        } else {
+            // update user and synchronize the roles
+            $user = User::find($id);
+            $user->name = Input::get('name');
+            $user->email = Input::get('email');
+            $user->save();
+            $user->roles()->sync(Input::get('roles'));
+            
+            // redirect
+            Session::flash('message.level', 'success');
+            Session::flash('message.content', __('The user was successfully updated'));
+            return Redirect::to('users');
+        }
     }
 
     /**
