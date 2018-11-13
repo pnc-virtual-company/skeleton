@@ -1,0 +1,31 @@
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// FullCalendar
+@import "~fullcalendar/dist/fullcalendar.css";
+
+// Datatables
+@import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
+@import "~datatables.net-responsive-bs4/css/responsive.bootstrap4.css";
+//@import "~datatables.net-autofill-bs/css/autoFill.bootstrap.css";
+@import "~datatables.net-buttons-bs4/css/buttons.bootstrap4.css";
+@import "~datatables.net-colreorder-bs4/css/colReorder.bootstrap4.css";
+@import "~datatables.net-fixedcolumns-bs4/css/fixedColumns.bootstrap4.css";
+//@import "~datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.css";
+//@import "~datatables.net-keytable-bs/css/keyTable.bootstrap.css";
+//@import "~datatables.net-rowgroup-bs/css/rowGroup.bootstrap.css";
+//@import "~datatables.net-scroller-bs/css/scroller.bootstrap.css";
+@import "~datatables.net-select-bs4/css/select.bootstrap4.css";
+
+//Codemirror editor
+@import "~codemirror/lib/codemirror.css";
+
+//Enhanced select box
+@import "~select2/dist/css/select2.css";
+
+//Datepickers
+@import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.css";
+@import "~flatpickr/dist/flatpickr.css";

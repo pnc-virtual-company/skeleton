@@ -1,57 +1,69 @@
-# Skeleton application
+# Skeleton
 
-The Skeleton application is designed for the WEP Students of Passerelles numériques in Cambodia.
-It contains some useful frontend and backend libraries:
+The skeleton application is a starter kit for Laravel based projects developed during the Virtual Company II at PNC.
 
- * CodeIgniter 3
- * PHPSpreadsheet (import/export Excel)
- * DOMPDF (create a PDF document)
- * picqer/php-barcode-generator Barcode generator
- * guzzlehttp/guzzle to call 3rd party API from PHP
- * sabre/vobject manipulate iCalendar objects (for an ICS feed)
+## Features
 
- A lot of examples are provided for various frontend widgets:
+* Debug bar
 
- * Datatable
- * Calendar
- * Datepicker
- * Material design icons
- * Rich text editors
- * Treeview
- * etc.
+## Prepare the database
 
-The Skeleton application is a starter kit for any CodeIgniter 3 projects.
-It contains a login page, session and user management.
-
-## PHP requirements
-
- * PHP version at least 5.6 or 7.0+ (PHP 7 recommended).
- * PHP Extension dom
- * PHP Extension gd
- * PHP Extension mbstring
- * PHP Extension xml
- * PHP Extension zip
- * PHP Extension zlib
+Create a database
 
 ## Setup
 
-If you have cloned the repository, you need an extra step to install the PHP libraries.
-Use composer (PHP dependencies manager) to install the libraies with this command:
+Install the backend dependencies:
 
     composer install
 
-Create a database named (for example) skeleton with the collating option `utf8_general_ci`
-Import the schema by using the SQL script provided into the SQL folder.
-Edit the file `application/config/database.php` and point to your database.
-By default, the skeleton application uses a prefix (`skeleton_`) for all tables.
-This behaviour can be changed by editing the databases options along with the name into the database.
+Install the frontend dependencies:
 
-The default user is *admin* and its password is *password*.
+    npm install
 
-/!\ IMPORTANT: Please change the name of the session cookie by opening `application/config/config.php` and change the value of  `sess_cookie_name` with the name of your application. For example:
+Build the JS and CSS bundles of the application:
 
-    $config['sess_cookie_name'] = 'ci_session';
+    npm run dev
 
-Would become:
+Launch the migration of the database and populate it with some random data:
 
-    $config['sess_cookie_name'] = 'my_application_session';
+    php artisan migrate:fresh --seed
+
+The application is deployed and accessible from the public subfolder.
+So you might need to create a virtual host as explained into the following paragraph.
+
+## Default users and roles
+
+Connect to the application as a user (password is *password* for all regular users) with one of the following logins:
+
+* employee@example.com
+* georges@example.com
+* bernard@example.com
+* luke@example.com
+* dark@example.com
+* emperor@example.com
+* uncle@example.com
+* bob@example.com
+* leila@example.com
+* obi@example.com
+
+Connect to the application as an administrator (password is *manager* for all regular admins) with one of the following logins:
+
+* manager@example.com
+* channak@example.com
+* rady@example.com
+* rith@example.com
+
+## Create your own application
+
+You can clean the following files if you want to build your own application:
+
+* resources/views/examples/*
+* resources/views/emails/example.php
+* public/images/examples/*
+* app/Http/Controllers/ExamplesComtroller.php
+* app/Mail/ExampleEmail.php
+* And the routes associated to the examples into routes/web.php
+
+Follow a tutorial like this one: https://laravel-news.com/your-first-laravel-application
+
+Good luck for your project :)
