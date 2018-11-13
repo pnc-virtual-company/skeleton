@@ -14,7 +14,14 @@ class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize
     */
     public function collection()
     {
-        return User::all();
+        $users = User::with('roles')->get();
+        //We need to display the roles as a list of roles
+        //separated by a comma
+        $users->map(function($user) {
+            $user['user_roles'] = $user->roles->pluck('name')->implode(', ');
+            return $user;
+        });
+        return $users;
     }
 
     public function headings(): array
@@ -23,6 +30,7 @@ class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize
             __('ID'),
             __('Name'),
             __('Email'),
+            __('Roles'),
         ];
     }
 }
