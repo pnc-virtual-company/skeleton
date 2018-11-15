@@ -19,6 +19,22 @@ class CreateRolesTable extends Migration
             $table->string('description');
             $table->timestamps();
         });
+
+        // Create two roles for the application
+        DB::table('roles')->insert(
+            array(
+                'id' => 1,
+                'name' => 'Administrator',
+                'description' => 'Administrator of the system'
+            )
+        );
+        DB::table('roles')->insert(
+            array(
+                'id' => 2,
+                'name' => 'User',
+                'description' => 'Regular User'
+            )
+        );
     }
 
     /**

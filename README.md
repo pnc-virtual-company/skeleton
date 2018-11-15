@@ -4,11 +4,16 @@ The skeleton application is a starter kit for Laravel based projects developed d
 
 ## Features
 
+* Simplified User/Roles management
 * Debug bar
+* Collection of PHP libraries
+* Collection of JS libraries
+* Examples of PHP and JS codes
+* A comprehensive starter kit that allows you to focus on business needs
 
 ## Prepare the database
 
-Create a database
+Create a database (eg. skeleton) and update your local .env (for development) or config/database.php file accordingly.
 
 ## Setup
 
@@ -20,7 +25,7 @@ Install the frontend dependencies:
 
     npm install
 
-Build the JS and CSS bundles of the application:
+Build the JS and CSS bundles of the application (change for *prod* in production):
 
     npm run dev
 
@@ -28,30 +33,16 @@ Launch the migration of the database and populate it with some random data:
 
     php artisan migrate:fresh --seed
 
-The application is deployed and accessible from the public subfolder.
-So you might need to create a virtual host as explained into the following paragraph.
+The application is deployed and accessible from the public subfolder (eg. http://localhost/skeleton/public/).
+
+You might need to update config/app.php with your own encryption key.
+
+/ ! \ Please change APP_NAME (either in .env or config/app.php) so as to avoid conflict in session name.
 
 ## Default users and roles
 
-Connect to the application as a user (password is *password* for all regular users) with one of the following logins:
-
-* employee@example.com
-* georges@example.com
-* bernard@example.com
-* luke@example.com
-* dark@example.com
-* emperor@example.com
-* uncle@example.com
-* bob@example.com
-* leila@example.com
-* obi@example.com
-
-Connect to the application as an administrator (password is *manager* for all regular admins) with one of the following logins:
-
-* manager@example.com
-* channak@example.com
-* rady@example.com
-* rith@example.com
+Connect to the application as an administrator with the login *manager@example.com* and the password *password*.
+All other users are created with random emails as login but they always have the same password *password*.
 
 ## Create your own application
 
@@ -66,4 +57,4 @@ You can clean the following files if you want to build your own application:
 
 Follow a tutorial like this one: https://laravel-news.com/your-first-laravel-application
 
-Good luck for your project :)
+Good luck for your project, and don't forget to update this README file :)
