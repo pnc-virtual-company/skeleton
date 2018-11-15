@@ -3562,7 +3562,7 @@
                     </div>
                     <div class="bd-example" data-example-id="">
                         <!-- Image and text -->
-                        <nav class="navbar navbar-light bg-faded"> <a class="navbar-brand" href="#"> <img src="{{ URL::to('/images/icon.svg') }}" class="d-inline-block align-top" alt="" width="30" height="30"> Bootstrap </a> </nav>
+                        <nav class="navbar navbar-light bg-faded"> <a class="navbar-brand" href="#"> <img src="{{ url('/images/icon.svg') }}" class="d-inline-block align-top" alt="" width="30" height="30"> Bootstrap </a> </nav>
                     </div>
                     <h3 id="nav">Nav</h3>
                     <div class="bd-example" data-example-id="">

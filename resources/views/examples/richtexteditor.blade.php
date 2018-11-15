@@ -26,7 +26,7 @@
 @push('scripts')
 <script>
 $(function() {
-    tinymce.baseURL = "{{URL::to('tinymce/')}}";   // trailing slash is important
+    tinymce.baseURL = "{{url('tinymce/')}}";   // trailing slash is important
 
     tinymce.init({
         selector:'#tinyMCE',

@@ -52,13 +52,13 @@
 $(function() {
     $('#jstree1').jstree({
       "core" : {
-        "themes" : { "url" : "{{URL::to('jstree/themes/default/style.min.css')}}" }
+        "themes" : { "url" : "{{url('jstree/themes/default/style.min.css')}}" }
       }
     });
 
     $('#jstree2').jstree({'plugins':["wholerow","checkbox"], 'core' : {
       "core" : {
-        "themes" : { "url" : "{{URL::to('jstree/themes/default/style.min.css')}}" }
+        "themes" : { "url" : "{{url('jstree/themes/default/style.min.css')}}" }
       },
         'data' : [
         {

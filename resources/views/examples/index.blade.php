@@ -22,7 +22,7 @@
                     <tr>
                       <td>Export a list into Excel</td>
                       <td>PHPSpreadsheet</td>
-                      <td><a href="{{ url('users') }}users">List of users</a>, click on <code>export this list</code></td>
+                      <td><a href="{{ url('users') }}">List of users</a>, click on <code>export this list</code></td>
                     </tr>
                     <tr>
                       <td>Login form</td>
@@ -65,7 +65,7 @@
                       <td>Royalty free faces</td>
                       <td>
                         Take a look at the folder <code>public/images/examples/faces/</code>
-                        <img id="imgProfilePic" src="{{URL::to('images/examples/faces/m34.jpg')}}" class="img-fluid rounded mx-auto d-block"/>
+                        <img id="imgProfilePic" src="{{url('images/examples/faces/m34.jpg')}}" class="img-fluid rounded mx-auto d-block"/>
                       </td>
                     </tr>
                     <tr>
@@ -157,7 +157,7 @@
     var items = Array('m','f');
     var sex = items[Math.floor(Math.random()*items.length)];
     var number = Math.floor(Math.random() * 43) + 1;
-    var picturePath = `{{URL::to('images/examples/faces')}}/${sex}${number}.jpg`;
+    var picturePath = `{{url('images/examples/faces')}}/${sex}${number}.jpg`;
     $("#imgProfilePic").attr("src", picturePath);  
   }, 500);
 

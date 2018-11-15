@@ -33,7 +33,7 @@
             <h3>Preview of fake SMTPserver</h3>
 
             <p>
-                <img class="img-fluid" src="{{ URL::to('images/examples/fake-smtp-server.png') }}" />
+                <img class="img-fluid" src="{{ url('images/examples/fake-smtp-server.png') }}" />
             </p>
             
         </div>
@@ -53,7 +53,7 @@ $(function() {
   //Ajax call to endpoint that sends an email
     $('#cmdSendFakeEmail').click(function (){
         $('#frmModalWait').modal('show');
-        $.get("{{URL::to('examples/emails/sendFakeEmail')}}", function(data, status) {
+        $.get("{{url('examples/emails/sendFakeEmail')}}", function(data, status) {
             $('#txtStatus').val(status);
             $('#txtMessage').val(data);
             $('#frmModalWait').modal('hide');

@@ -19,9 +19,9 @@
                 
                 <p>Pick a language ({{ $langCode }}):
                 <select id="language" class="select">
-                  <option value="{{URL::to('examples/translation/switch')}}/en" {{ ($langCode=="en")?'selected':'' }}>English</option>
-                  <option value="{{URL::to('examples/translation/switch')}}/km" {{ ($langCode=="km")?'selected':'' }}>Khmer</option>
-                  <option value="{{URL::to('examples/translation/switch')}}/fr" {{ ($langCode=="fr")?'selected':'' }}>French</option>
+                  <option value="{{url('examples/translation/switch')}}/en" {{ ($langCode=="en")?'selected':'' }}>English</option>
+                  <option value="{{url('examples/translation/switch')}}/km" {{ ($langCode=="km")?'selected':'' }}>Khmer</option>
+                  <option value="{{url('examples/translation/switch')}}/fr" {{ ($langCode=="fr")?'selected':'' }}>French</option>
                 </select>
                 </p>
                 

@@ -16,7 +16,7 @@
     echo $generatorHTML->getBarcode('081231723897', $generatorHTML::TYPE_CODE_128);
 </pre>
 
-<iframe src="{{URL::to('examples/barcode/generate?format=html&type=code128&message=081231723897')}}"></iframe>
+<iframe src="{{url('examples/barcode/generate?format=html&type=code128&message=081231723897')}}"></iframe>
 
             <br />
             
@@ -28,7 +28,7 @@
      base64_encode($generatorPNG->getBarcode('081231723897', $generatorPNG::TYPE_CODE_128)) . '"&gt;';
 </pre>
 
-<img src="{{URL::to('examples/barcode/generate?format=png&type=code128&message=081231723897')}}">
+<img src="{{url('examples/barcode/generate?format=png&type=code128&message=081231723897')}}">
 
             <br />            
         </div>

@@ -8,19 +8,19 @@
     <style>
     @font-face {
       font-family: 'Noto Sans Khmer';
-      src: url('{{URL::to('fonts/NotoSansKhmer/NotoSansKhmer-Regular.ttf')}}') format('truetype');
+      src: url('{{url('fonts/NotoSansKhmer/NotoSansKhmer-Regular.ttf')}}') format('truetype');
     }
     @font-face {
       font-family: 'Noto Sans Khmer Bold';
-      src: url('{{URL::to('fonts/NotoSansKhmer/NotoSansKhmerUI-Bold.ttf')}}') format('truetype');
+      src: url('{{url('fonts/NotoSansKhmer/NotoSansKhmerUI-Bold.ttf')}}') format('truetype');
     }
     @font-face {
       font-family: 'Noto Serif Khmer';
-      src: url('{{URL::to('fonts/NotoSansKhmer/NotoSerifKhmer-Regular.ttf')}}') format('truetype');
+      src: url('{{url('fonts/NotoSansKhmer/NotoSerifKhmer-Regular.ttf')}}') format('truetype');
     }
     @font-face {
       font-family: 'Noto Serif Khmer Bold';
-      src: url('{{URL::to('fonts/NotoSansKhmer/NotoSerifKhmer-Bold.ttf')}}') format('truetype');
+      src: url('{{url('fonts/NotoSansKhmer/NotoSerifKhmer-Bold.ttf')}}') format('truetype');
     }
     .sans-regular {
         font-family: 'Noto Sans Khmer' !important;

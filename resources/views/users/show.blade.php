@@ -14,7 +14,7 @@
 
                     <div class="row">
                             <div class="col-md-12">
-                                <a class="btn btn-secondary" href="{{URL::to('users')}}">@lang('Back to list')</a>
+                                <a class="btn btn-secondary" href="{{url('users')}}">@lang('Back to list')</a>
                             </div>
                         </div>
 

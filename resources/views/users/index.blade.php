@@ -14,8 +14,8 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <a class="btn btn-secondary" href="{{URL::to('users/create')}}">@lang('Add a new user')</a>
-                            <a class="btn btn-secondary" href="{{URL::to('users/export')}}">@lang('Export to Excel')</a>
+                            <a class="btn btn-secondary" href="{{url('users/create')}}">@lang('Add a new user')</a>
+                            <a class="btn btn-secondary" href="{{url('users/export')}}">@lang('Export to Excel')</a>
                         </div>
                     </div>
 
@@ -37,8 +37,8 @@
                                     <tr data-id="{{ $user->id }}">
                                         <td>
                                             <i class="mdi mdi-delete clickable delete-icon" data-id="{{ $user->id }}" title="@lang('delete the user')"></i>
-                                            <a href="{{URL::to('users')}}/{{ $user->id }}/edit" title="@lang('edit')"><i class="mdi mdi-pencil clickable"></i></a>
-                                            <a href="{{URL::to('users')}}/{{ $user->id }}" title="@lang('view')"><i class="mdi mdi-eye clickable"></i></a>
+                                            <a href="{{url('users')}}/{{ $user->id }}/edit" title="@lang('edit')"><i class="mdi mdi-pencil clickable"></i></a>
+                                            <a href="{{url('users')}}/{{ $user->id }}" title="@lang('view')"><i class="mdi mdi-eye clickable"></i></a>
                                             <span>{{ $user->id }}</span>
                                         </td>
                                         <td>
@@ -96,7 +96,7 @@ $(function() {
         $('#frmModalWait').modal('show');
         var id = $('#frmModalDeleteConfirmation').data("id");
         $.ajax({
-            url: '{{URL::to('users')}}/' + id,
+            url: '{{url('users')}}/' + id,
             type: 'DELETE',
             data: {
                 id: id,

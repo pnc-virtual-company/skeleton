@@ -38,7 +38,7 @@
                             <a class="nav-link" href="{{ route('examples') }}">{{ __('Examples') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{URL::to('users')}}"><i class="mdi mdi-lock"></i> {{ __('Users') }}</a>
+                            <a class="nav-link" href="{{url('users')}}"><i class="mdi mdi-lock"></i> {{ __('Users') }}</a>
                         </li>
                     </ul>
 
@@ -61,7 +61,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{URL::to('users/profile')}}">
+                                    <a class="dropdown-item" href="{{url('users/profile')}}">
                                          {{ __('Profile') }}
                                      </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
