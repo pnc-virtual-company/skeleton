@@ -94,7 +94,7 @@ class UserController extends Controller
             $user = new User;
             $user->name = Input::get('name');
             $user->email = Input::get('email');
-            $user->password = Input::get('password');
+            $user->password = bcrypt(Input::get('password'));
             $user->save();
             $user->roles()->attach(Input::get('roles'));
             
