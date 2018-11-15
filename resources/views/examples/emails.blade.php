@@ -50,13 +50,22 @@
 @push('scripts')
 <script>
 $(function() {
-  //Ajax call to endpoint that sends an email
+    //Ajax call to endpoint that sends an email
     $('#cmdSendFakeEmail').click(function (){
         $('#frmModalWait').modal('show');
-        $.get("{{url('examples/emails/sendFakeEmail')}}", function(data, status) {
-            $('#txtStatus').val(status);
-            $('#txtMessage').val(data);
-            $('#frmModalWait').modal('hide');
+        $.ajax({
+            type: "GET",
+            url: "{{ url('examples/emails/sendFakeEmail') }}",
+            success: function (data, textStatus) {
+                $('#txtStatus').val(textStatus);
+                $('#txtMessage').val(data);
+                $('#frmModalWait').modal('hide');
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                $('#txtStatus').val(textStatus);
+                $('#txtMessage').val(errorThrown);
+                $('#frmModalWait').modal('hide');
+            }
         });
     });
 });
