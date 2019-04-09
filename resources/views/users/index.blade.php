@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <a class="btn btn-secondary" href="{{url('users/create')}}">@lang('Add a new user')</a>
-                            <a class="btn btn-secondary" href="{{url('users/export')}}">@lang('Export to Excel')</a>
+                            <a class="btn btn-secondary" href="{{url('users/export')}}" download>@lang('Export to Excel')</a>
                         </div>
                     </div>
 

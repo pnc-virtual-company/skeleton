@@ -7,10 +7,10 @@
 
             <p>
                 You can download the PDF by clicking on the link:
-                <a href="{{url('examples/pdf/downloadPDF')}}">here</a>
+                <a href="{{url('examples/pdf/downloadPDF')}}" download>here</a>
             </p>
               
-            <iframe src="{{url('examples/pdf/generatePDF')}}" width="700px" height=600px"></iframe>
+            <embed type="application/pdf" src="{{url('examples/pdf/generatePDF')}}" width="700px" height="600px"></embed>
             
         </div>
 

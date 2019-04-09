@@ -16,11 +16,11 @@
     }
     @font-face {
       font-family: 'Noto Serif Khmer';
-      src: url('{{url('fonts/NotoSansKhmer/NotoSerifKhmer-Regular.ttf')}}') format('truetype');
+      src: url('{{url('fonts/NotoSerifKhmer/NotoSerifKhmer-Regular.ttf')}}') format('truetype');
     }
     @font-face {
       font-family: 'Noto Serif Khmer Bold';
-      src: url('{{url('fonts/NotoSansKhmer/NotoSerifKhmer-Bold.ttf')}}') format('truetype');
+      src: url('{{url('fonts/NotoSerifKhmer/NotoSerifKhmer-Bold.ttf')}}') format('truetype');
     }
     .sans-regular {
         font-family: 'Noto Sans Khmer' !important;
